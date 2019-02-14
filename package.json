@@ -4,7 +4,7 @@
   "description": "A web service for house renting management",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon server.js",
     "test": "jest",
     "tdd": "jest --watchAll --verbose"
   },
@@ -20,16 +20,19 @@
   "homepage": "https://github.com/oiami/house-rental#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "nodemon": "^1.18.10"
+    "knex": "^0.16.3",
+    "nodemon": "^1.18.10",
+    "pg": "^7.8.0"
   },
   "devDependencies": {
+    "body-parser": "^1.18.3",
     "eslint": "^5.13.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "jest": "^24.1.0",
+    "jest": "^23.6.0",
     "supertest": "^3.4.2"
   }
 }
