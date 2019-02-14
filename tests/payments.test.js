@@ -54,7 +54,7 @@ describe('/payment', () => {
     const postRequest = (params) => {
       return request(server)
         .post('/payments')
-        .send(params)
+        .send(params);
     };
   
     it('should reqturn 400 if body data is missing', async () => {
@@ -89,8 +89,8 @@ describe('/payment', () => {
     
     const putRequest = (params) => {
       return request(server)
-      .put('/payments/2')
-      .send(params)
+        .put('/payments/2')
+        .send(params);
     };
   
     it('should reqturn 400 if body data is missing', async () => {
