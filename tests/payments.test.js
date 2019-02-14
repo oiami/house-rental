@@ -34,7 +34,82 @@ describe('/payment', () => {
       };
       const result = await request(server).post('/payments').send(data);
       expect(result.status).toBe(200);
-      expect(result.text).toEqual('Payment item added');
-    })
+      expect(result.body.message).toEqual('Payment item added');
+    });
   });
+
+  describe('POST /', () => {
+
+    const date = new Date();
+    let paymentItem = {
+      contractId: 1,
+      description: 'Rent payment',
+      value: 1000,
+      isImported: false,
+      createdAt: date,
+      updatedAt: date,
+      isDeleted: false
+    };
+    
+    const postRequest = (params) => {
+      return request(server)
+        .post('/payments')
+        .send(params)
+    };
+  
+    it('should reqturn 400 if body data is missing', async () => {
+      const res = await postRequest();
+      expect(res.status).toBe(400);
+    });
+  
+  
+    it('should return 422 if required data is missing', async () => {
+      const result = await postRequest(paymentItem);
+      expect(result.status).toBe(422);
+    });
+    
+    it('Create payment successfully', async () => {
+      paymentItem['time'] = date;
+      const result = await postRequest(paymentItem);
+      expect(result.status).toBe(200);
+      expect(result.body.message).toEqual('Payment item added');
+    });
+  });
+
+  describe('PUT /:id', () => {
+    const date = new Date();
+    const paymentUpdateItem = {
+      value: '444',
+      time: date,
+      isImported: true,
+      createdAt: date,
+      updatedAt: date,
+      isDeleted: true
+    };
+    
+    const putRequest = (params) => {
+      return request(server)
+      .put('/payments/2')
+      .send(params)
+    };
+  
+    it('should reqturn 400 if body data is missing', async () => {
+      const res = await putRequest();
+      expect(res.status).toBe(400);
+    });
+  
+    it('should return 422 if data format is is valid', async () => {
+      const result = await putRequest(paymentUpdateItem);
+      expect(result.status).toBe(422);
+    });
+    
+    it('Update payment successfully', async () => {
+      paymentUpdateItem['value'] = 111;
+      const result = await putRequest(paymentUpdateItem);
+      expect(result.status).toBe(200);
+      expect(result.body.message).toEqual('Payment item updated');
+    });
+  });
+  
 });
+

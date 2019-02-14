@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest",
+    "test": "jest --forceExit",
     "tdd": "jest --watchAll --verbose"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/oiami/house-rental#readme",
   "dependencies": {
+    "ajv": "^6.9.1",
     "express": "^4.16.4",
     "knex": "^0.16.3",
     "nodemon": "^1.18.10",
