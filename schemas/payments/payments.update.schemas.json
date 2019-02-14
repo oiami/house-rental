@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "contractId": {
+      "type": "number"
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "value": {
+      "type": "number"
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isImported": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isDeleted": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}
