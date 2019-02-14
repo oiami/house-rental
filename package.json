@@ -1,0 +1,24 @@
+{
+  "name": "house-rental",
+  "version": "1.0.0",
+  "description": "A web service for house renting management",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oiami/house-rental.git"
+  },
+  "author": "Pattawan Gerlings-Kaewduangdee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oiami/house-rental/issues"
+  },
+  "homepage": "https://github.com/oiami/house-rental#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  }
+}
