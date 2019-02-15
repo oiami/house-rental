@@ -8,7 +8,7 @@ const calc = require('../utils/calc');
 router.get('/', async (req, res) => {
   try {
     const results = await req.db.select().from('payments');
-    res.status(200).json({ results: results });
+    res.status(200).json({ message: 'Query all payment items successfully', results: results });
   } catch (e) {
     res.status(500).json({ message: 'Failed to query payments' });
   }

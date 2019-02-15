@@ -19,7 +19,7 @@ describe('/payment', () => {
     });
   });
 
-  describe.only('GET /:contractId', async () => {
+  describe('GET /:contractId', async () => {
     it('Get payments items for specific contract ID', async () => {
       const result = await request(server).get('/payments/1')
         .query({ startDate: '2019-02-13', endDate: '2019-02-15' });
