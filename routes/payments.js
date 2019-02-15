@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Ajv = require('ajv');
 const ajv = new Ajv({ useDefaults: true });
+const calc = require('../utils/calc');
 
 /* GET payment listing. */
 router.get('/', async (req, res) => {
@@ -11,6 +12,30 @@ router.get('/', async (req, res) => {
   } catch (e) {
     res.status(500).json({ message: 'Failed to query payments' });
   }
+});
+
+router.get('/:contractId', async (req, res) => {
+  const { startDate, endDate } = req.query;
+  if (!startDate || !endDate) {
+    return res.status(400).json({ message: 'starDate and endDate are required to query payment' });
+  }
+  
+  try {
+    const results = await req.db.select().from('payments')
+      .where({ contractId: req.params.contractId })
+      .where('createdAt', '>=', new Date(startDate))
+      .where('createdAt', '<', new Date(endDate));
+  
+    res.status(200).json({
+      message: 'Query payment items successfully', 
+      results: {
+        items: results,
+        sum: calc.sumValue(results, 'value') 
+      }
+    });
+  } catch (e) {
+    res.status(500).json({ message: 'Failed to query payment with contract ID' });
+  } 
 });
 
 router.post('/', async (req, res) => {

@@ -4,7 +4,7 @@ describe('/payment', () => {
   let server;
   
   beforeAll(() => {
-    server = require('../server');
+    server = require('../../server');
   });
   
   afterAll(() => {
@@ -16,6 +16,17 @@ describe('/payment', () => {
       const result = await request(server).get('/payments');
       expect(result.status).toBe(200);
       done();
+    });
+  });
+
+  describe.only('GET /:contractId', async () => {
+    it('Get payments items for specific contract ID', async () => {
+      const result = await request(server).get('/payments/1')
+        .query({ startDate: '2019-02-13', endDate: '2019-02-15' });
+      
+      expect(result.status).toBe(200);
+      expect(result.body.results).toHaveProperty('sum');
+      expect(result.body.results).toHaveProperty('items');
     });
   });
 
@@ -57,7 +68,7 @@ describe('/payment', () => {
         .send(params);
     };
   
-    it('should reqturn 400 if body data is missing', async () => {
+    it('should return 400 if body data is missing', async () => {
       const res = await postRequest();
       expect(res.status).toBe(400);
     });
@@ -93,7 +104,7 @@ describe('/payment', () => {
         .send(params);
     };
   
-    it('should reqturn 400 if body data is missing', async () => {
+    it('should return 400 if body data is missing', async () => {
       const res = await putRequest();
       expect(res.status).toBe(400);
     });
