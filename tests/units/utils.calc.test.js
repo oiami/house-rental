@@ -6,12 +6,12 @@ describe('util function', () => {
       const data = [{
         contractId: 1,
         id: 3,
-        value: "1000"
+        value: '1000'
       },
       {
         contractId: 1,
         id: 4,
-        value: "-820"
+        value: '-820'
       }];
       const sum = util.sumValue(data, 'value');
       expect(sum).toBe(180);

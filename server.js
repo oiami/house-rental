@@ -17,13 +17,13 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   if (err.status === 404) {
     return res.status(404).json({ message: 'Resource is not available '});
   }
 
   res.status(err.status || 500);
-  res.json({ message: "Server is not available"});
+  res.json({ message: 'Server is not available'});
 });
 
 
